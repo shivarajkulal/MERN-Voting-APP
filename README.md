@@ -2,6 +2,11 @@
 
 This repository contains the documentation for the Voting System, outlining the processes for both users and administrators.
 
+##Flow Diagram
+
+![Flow Diagram](https://github.com/shivarajkulal/MERN-Voting-APP/raw/master/flowdiagram.png)
+
+
 ## Processes Overview
 
 1. **Logged-in Users:**
