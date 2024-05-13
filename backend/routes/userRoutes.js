@@ -60,20 +60,20 @@ router.post("/login", async (req, res) => {
     const { aadharCardNumber, password } = req.body;
 
     // Check if aadharCardNumber or password is missing
-    if (!aadharCardNumber || !password) {
+    if (!aadharCardNumber ||!password) {
       return res
-        .status(400)
-        .json({ error: "Aadhar Card Number and password are required" });
+       .status(400)
+       .json({ error: "Aadhar Card Number and password are required" });
     }
 
     // Find the user by aadharCardNumber
     const user = await User.findOne({ aadharCardNumber: aadharCardNumber });
 
     // If user does not exist or password does not match, return error
-    if (!user || !(await user.comparePassword(password))) {
+    if (!user ||!(await user.comparePassword(password))) {
       return res
-        .status(401)
-        .json({ error: "Invalid Aadhar Card Number or Password" });
+       .status(401)
+       .json({ error: "Invalid Aadhar Card Number or Password" });
     }
 
     // generate Token
@@ -82,8 +82,11 @@ router.post("/login", async (req, res) => {
     };
     const token = generateToken(payload);
 
-    // resturn token as response
-    res.json({ token });
+    // Include user's role in the response
+    const userRole = user.role; // Assuming 'role' is a property of the user object
+
+    // Return token and user's role as response
+    res.json({ token, role: userRole });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal Server Error" });
