@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/api";
+import "../styles/UserProfile.css"; // Importing CSS file for styling
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState("");
-  const [hasVoted, setHasVoted] = useState(false); // New state variable for voting status
+  const [hasVoted, setHasVoted] = useState(false);
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -19,7 +20,6 @@ const UserProfile = () => {
         });
         setUser(response.data.user);
 
-        // Fetch the user's voting status
         const votingStatusResponse = await api.get("/user/voting-status", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -67,16 +67,16 @@ const UserProfile = () => {
   }
 
   return (
-    <div>
+    <div className="user-profile-container">
       <h2>User Profile</h2>
       {error && <div className="error">{error}</div>}
-      <div>
+      <div className="user-details">
         <p>Name: {user.name}</p>
         <p>Age: {user.age}</p>
         <p>Aadhar Card Number: {user.aadharCardNumber}</p>
-        <p>Voting Status: {hasVoted ? "Voted" : "Not Voted"}</p>{" "}
+        <p>Voting Status: {hasVoted ? "Voted" : "Not Voted"}</p>
         <form onSubmit={handlePasswordUpdate}>
-          <div>
+          <div className="password-update">
             <label htmlFor="currentPassword">Current Password:</label>
             <input
               type="password"
@@ -86,7 +86,7 @@ const UserProfile = () => {
               required
             />
           </div>
-          <div>
+          <div className="password-update">
             <label htmlFor="newPassword">New Password:</label>
             <input
               type="password"

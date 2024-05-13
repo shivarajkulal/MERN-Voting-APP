@@ -1,0 +1,33 @@
+.home-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.home-title {
+  color: #333;
+}
+
+.home-subtitle {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.login-button,
+.register-button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button:hover,
+.register-button:hover {
+  background-color: #0056b3;
+}

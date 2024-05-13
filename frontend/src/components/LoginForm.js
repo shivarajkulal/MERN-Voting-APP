@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import "../styles/LoginForm.css"; // Importing CSS file for styling
 
 const LoginForm = () => {
   const [aadharCardNumber, setAadharCardNumber] = useState("");
@@ -21,10 +22,8 @@ const LoginForm = () => {
 
       const userRole = response.data.role;
       if (userRole === "admin") {
-        navigate("/adminDashboard"); 
+        navigate("/adminDashboard");
       } else if (userRole === "voter") {
-        navigate("/userDashboard"); 
-      } else {    
         navigate("/userDashboard");
       }
     } catch (error) {
@@ -33,11 +32,11 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
+    <div className="login-form-container">
       <h2>Login</h2>
       {error && <div className="error">{error}</div>}
       <form onSubmit={handleLogin}>
-        <div>
+        <div className="form-group">
           <label htmlFor="aadharCardNumber">Aadhar Card Number:</label>
           <input
             type="text"
@@ -47,7 +46,7 @@ const LoginForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"

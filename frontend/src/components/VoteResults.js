@@ -8,7 +8,11 @@ const VoteResults = () => {
   useEffect(() => {
     const fetchVoteResults = async () => {
       try {
-        const response = await api.get("candidate/vote/count");
+        // Assuming you have a way to get the token, e.g., from localStorage
+        const token = localStorage.getItem("token"); // Adjust this line if your token storage method is different
+        const response = await api.get("/candidate/vote/count", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setResults(response.data);
       } catch (error) {
         setError("Failed to fetch vote results");

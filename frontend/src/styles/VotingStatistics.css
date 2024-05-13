@@ -1,0 +1,29 @@
+.voting-stats-container {
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.table-container {
+  margin: 0 auto; /* This will center the table */
+  width: fit-content; /* This will make the container take the width of its content */
+}
+
+.candidate-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.candidate-table th,
+.candidate-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.candidate-table th {
+  background-color: #f2f2f2;
+}

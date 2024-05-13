@@ -1,0 +1,55 @@
+/* VotingProcess.css */
+
+/* Container styles */
+.voting-process-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Heading styles */
+.voting-process-heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Error message styles */
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Loading message styles */
+.loading-message {
+  font-style: italic;
+}
+
+/* Candidate list styles */
+.candidate-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Candidate list item styles */
+.candidate-item {
+  margin-bottom: 10px;
+}
+
+/* Vote button styles */
+.vote-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Voting result button styles */
+.view-result-button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}

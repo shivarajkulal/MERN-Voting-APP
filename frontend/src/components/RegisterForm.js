@@ -1,9 +1,11 @@
+
+import "../styles/RegisterForm.css"; // Importing CSS file for styling
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 const RegisterForm = () => {
-  
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [aadharCardNumber, setAadharCardNumber] = useState("");
@@ -11,7 +13,7 @@ const RegisterForm = () => {
   const [address, setAddress] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false); 
+  const [isAdmin, setIsAdmin] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -26,11 +28,10 @@ const RegisterForm = () => {
         address,
         aadharCardNumber,
         password,
-        role: isAdmin ? "admin" : "voter", // Include the role in the request data
+        role: isAdmin ? "admin" : "voter",
       });
       const token = response.data.token;
       localStorage.setItem("token", token);
-      // Redirect to the login page after successful registration
       navigate("/login");
     } catch (error) {
       setError("Registration failed. Please check your details and try again.");
@@ -38,11 +39,11 @@ const RegisterForm = () => {
   };
 
   return (
-    <div>
+    <div className="register-form-container">
       <h2>Register</h2>
       {error && <div className="error">{error}</div>}
       <form onSubmit={handleRegister}>
-        <div>
+        <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -52,7 +53,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="age">Age:</label>
           <input
             type="number"
@@ -62,8 +63,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div>
-          {/* Add input field for email */}
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -73,8 +73,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div>
-          {/* Add input field for mobile number */}
+        <div className="form-group">
           <label htmlFor="mobile">Mobile Number:</label>
           <input
             type="text"
@@ -84,7 +83,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="address">Address:</label>
           <input
             type="text"
@@ -94,7 +93,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="aadharCardNumber">Aadhar Card Number:</label>
           <input
             type="text"
@@ -104,7 +103,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -114,8 +113,7 @@ const RegisterForm = () => {
             required
           />
         </div>
-        {/* Checkbox for selecting admin role */}
-        <div>
+        <div className="form-group">
           <label>
             <input
               type="checkbox"
@@ -125,7 +123,6 @@ const RegisterForm = () => {
             Register as Admin
           </label>
         </div>
-
         <button type="submit">Register</button>
       </form>
     </div>

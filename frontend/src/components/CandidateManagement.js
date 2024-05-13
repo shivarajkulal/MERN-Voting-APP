@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/api";
-import VoteResults from "./VoteResults"; // Import VoteResults component
+import "../styles/CandidateManagement.css";
 
 const CandidateManagement = () => {
   const [candidates, setCandidates] = useState([]);
@@ -23,8 +23,9 @@ const CandidateManagement = () => {
   };
 
   const handleAddCandidate = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Make sure to prevent the default form submission behavior
     try {
+      api.setToken(localStorage.getItem("token")); // Set the token before making the request
       await api.post("/candidate", { name, party, age });
       alert("Candidate added successfully");
       fetchCandidates();
@@ -38,6 +39,7 @@ const CandidateManagement = () => {
 
   const handleUpdateCandidate = async (candidateId, updatedCandidate) => {
     try {
+      api.setToken(localStorage.getItem("token")); // Set the token before making the request
       await api.put(`/candidate/${candidateId}`, updatedCandidate);
       alert("Candidate updated successfully");
       fetchCandidates();
@@ -48,6 +50,7 @@ const CandidateManagement = () => {
 
   const handleDeleteCandidate = async (candidateId) => {
     try {
+      api.setToken(localStorage.getItem("token")); // Set the token before making the request
       await api.delete(`/candidate/${candidateId}`);
       alert("Candidate deleted successfully");
       fetchCandidates();
@@ -57,11 +60,8 @@ const CandidateManagement = () => {
   };
 
   return (
-    <div>
+    <div className="candidate-management-container">
       <h2>Candidate Management</h2>
-      <h1>
-        <VoteResults />
-      </h1>
       {error && <div className="error">{error}</div>}
       <form onSubmit={handleAddCandidate}>
         <div>
@@ -105,6 +105,7 @@ const CandidateManagement = () => {
             <th>Party</th>
             <th>Age</th>
             <th>Action</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -115,14 +116,12 @@ const CandidateManagement = () => {
               <td>{candidate.age}</td>
               <td>
                 <button
-                  onClick={() =>
-                    handleUpdateCandidate(candidate._id, {
-                      /* Updated candidate data */
-                    })
-                  }
+                  onClick={() => handleUpdateCandidate(candidate._id, {})}
                 >
                   Update
                 </button>
+              </td>
+              <td>
                 <button onClick={() => handleDeleteCandidate(candidate._id)}>
                   Delete
                 </button>

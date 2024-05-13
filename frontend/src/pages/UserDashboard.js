@@ -1,6 +1,8 @@
 import React from "react";
 import UserProfile from "../components/UserProfile";
 import { useNavigate } from "react-router-dom";
+import "../styles/UserDashboard.css"; // Importing CSS file for styling
+
 const Dashboard = () => {
   const navigate = useNavigate();
 
@@ -14,11 +16,15 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
+    <div className="dashboard-container">
       <h2>Dashboard</h2>
-      <button onClick={handleLogout}>Logout</button>
+      <button className="logout-btn" onClick={handleLogout}>
+        Logout
+      </button>
       <UserProfile />
-      <button onClick={goToVotingProcess}>Go to Voting Process</button>
+      <button className="voting-process-btn" onClick={goToVotingProcess}>
+        Go to Voting Process
+      </button>
     </div>
   );
 };

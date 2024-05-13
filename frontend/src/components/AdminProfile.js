@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/api";
+import "../styles/AdminProfile.css";
 
 const AdminProfile = () => {
   const [adminData, setAdminData] = useState(null);
@@ -9,7 +10,13 @@ const AdminProfile = () => {
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const response = await api.get("/user/profile");
+        const token = localStorage.getItem("token");
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await api.get("/user/profile", config);
         setAdminData(response.data);
         setLoading(false);
       } catch (error) {
@@ -21,18 +28,22 @@ const AdminProfile = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="admin-profile-container">Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return (
+      <div className="admin-profile-container error-text">Error: {error}</div>
+    );
   }
 
   return (
-    <div>
+    <div className="admin-profile-container">
       <h2>Admin Profile</h2>
-      <p>Name: {adminData.name}</p>
-      <p>Email: {adminData.email}</p>
+      <div className="profile-info">
+        <p>Name: {adminData.user.name}</p>
+        <p>Email: {adminData.user.email}</p>
+      </div>
     </div>
   );
 };
